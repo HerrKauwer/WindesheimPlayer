@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Windesheim player</title>
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/wp.css" rel="stylesheet">
+</head>
+<body>
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Windesheim player</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <form class="navbar-form navbar-right">
+                <div class="input-group">
+                    <input type="text" id="search-text" class="form-control" placeholder="Track or artist...">
+                    <div id="search-button" class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="panel panel-default" id="search-results">
+        <div class="panel-heading">
+            Search results for <span id="search-results-for"></span>
+            <button type="button" class="close" data-target="#search-results" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="panel-body">
+            <table class="table playlist">
+                <thead>
+                <tr>
+                    <td>Artist</td>
+                    <td>Track</td>
+                    <td>Album</td>
+                    <td class="controls"></td>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach: searchResults">
+                <tr>
+                    <td data-bind="text: artist"></td>
+                    <td data-bind="text: name"></td>
+                    <td data-bind="text: album"></td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm" data-bind="click: $root.addTrack">Add</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <table class="table playlist">
+        <thead>
+        <tr>
+            <td class="controls"></td>
+            <td class="index">#</td>
+            <td>Artist</td>
+            <td>Track</td>
+            <td>Album</td>
+        </tr>
+        </thead>
+        <tbody data-bind="foreach: tracks">
+        <tr data-bind="click: $root.play">
+            <td><span data-bind="visible: ($data === $root.nowPlaying())" class="glyphicon glyphicon-play" aria-hidden="true"></span></td>
+            <td data-bind="text: ($index() + 1)"></td>
+            <td data-bind="text: artist"></td>
+            <td data-bind="text: name"></td>
+            <td data-bind="text: album"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <audio id="audio" controls></audio>
+        <span id="nowplaying" class="pull-right" data-bind="text: nowPlayingName"></span>
+    </div>
+</footer>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/knockout-3.4.0.js"></script>
+<script src="/js/wp.js"></script>
+</body>
+</html>
