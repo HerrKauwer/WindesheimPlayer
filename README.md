@@ -34,7 +34,11 @@ Your website should now be available. Open a modern browser and go to http://127
 Have fun!
 
 For this project I used:
+
 Bootstrap http://getbootstrap.com/
+
 jQuery http://jquery.com/
+
 Knockout http://knockoutjs.com/
+
 Spotify Web API https://developer.spotify.com/web-api/ they have many more great examples!
